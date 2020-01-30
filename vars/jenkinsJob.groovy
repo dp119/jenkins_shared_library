@@ -30,7 +30,7 @@ def packageArtifact(){
 
 def archiveArtifact(){
     stage("Archive artifact") {
-        echo %cd%
+        bat "echo %cd%"
         archiveArtifacts '*/target/*.jar'
     }
 }
