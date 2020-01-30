@@ -32,8 +32,7 @@ def packageArtifact(){
 def archiveArtifact(){
     stage("Archive artifact") {
         bat "echo %cd%"
-        archiveArtifacts 'E:/Deepu/Jenkins/atmosphere2/spring-boot-samples/spring-boot-sample-atmosphere/target/*.jar'
-    }
+        archiveArtifacts "E:\Deepu\Jenkins\atmosphere2\spring-boot-samples\spring-boot-sample-atmosphere\target\*.jar"    }
 }
 
 def deploy(){
