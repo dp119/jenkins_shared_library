@@ -6,6 +6,12 @@ def call(){
 
         packageArtifact()
 
+        archiveArtifact()
+
+        deploy()
+
+        health_check()
+
         // Execute different stages depending on the job
         // if(env.JOB_NAME.contains("deploy")){
         //     packageArtifact()
@@ -34,7 +40,7 @@ def deploy(){
           projectName: currentBuild.projectName,
           filter: 'target/*/*.jar',
           fingerprintArtifacts: true,
-          target:     'D:/Tomcat/webapps/',
+          target: 'D:/Tomcat/webapps/',
           flatten: true        )
     }
 }
