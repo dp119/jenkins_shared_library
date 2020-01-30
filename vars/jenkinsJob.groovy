@@ -18,7 +18,7 @@ def call(){
 
 def packageArtifact(){
     stage("Package artifact") {
-        bat "mvn package"
+        bat "mvn -f E:/Deepu/Jenkins/atmosphere2/spring-boot-samples/spring-boot-sample-atmosphere/pom.xml compile && exit %%ERRORLEVEL%%"
     }
 }
 
