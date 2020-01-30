@@ -3,9 +3,8 @@ def call(){
         stage('Checkout') {
             checkout scm
         }
-        stage('Build') {
-            packageArtifact()
-        }
+
+        packageArtifact()
 
         // Execute different stages depending on the job
         // if(env.JOB_NAME.contains("deploy")){
@@ -16,14 +15,37 @@ def call(){
     }
 }
 
+
 def packageArtifact(){
     stage("Package artifact") {
-        sh "mvn package"
+        bat "mvn package"
     }
 }
 
-def buildAndTest(){
-    stage("Backend tests"){
-        sh "mvn test"
+def archiveArtifact(){
+    stage("Archive artifact") {
+        archiveArtifacts 'target/*/*.jar'
+    }
+}
+
+def deploy(){
+   stage('Deploy Artifact') {
+    copyArtifacts(
+          projectName: currentBuild.projectName,
+          filter: 'target/*/*.jar',
+          fingerprintArtifacts: true,
+          target:     'D:/Tomcat/webapps/',
+          flatten: true        )
+    }
+}
+
+def health_check(){
+    stage("Health Check"){
+        pwsh '''curl -sL --connect-timeout 20 --max-time 30 -w "%{http_code}\\n" "$url" -o /dev/null
+                if [ "$code" = "200" ]; then
+                    echo "Website $url is online."
+                else
+                    echo "Website $url seems to be offline."
+                fi '''
     }
 }
