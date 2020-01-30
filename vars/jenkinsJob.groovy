@@ -40,7 +40,7 @@ def deploy(){
    stage('Deploy Artifact') {
     copyArtifacts(
           projectName: currentBuild.projectName,
-          filter: 'target/*/*.jar',
+          filter: 'E:/Deepu/Jenkins/atmosphere2/spring-boot-samples/spring-boot-sample-atmosphere/target/*.jar',
           fingerprintArtifacts: true,
           target: 'D:/Tomcat/webapps/',
           flatten: true        )
