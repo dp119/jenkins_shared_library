@@ -5,11 +5,11 @@ def call(){
         }
 
         // Execute different stages depending on the job
-        if(env.JOB_NAME.contains("deploy")){
-            packageArtifact()
-        } else if(env.JOB_NAME.contains("test")) {
-            buildAndTest()
-        }
+        // if(env.JOB_NAME.contains("deploy")){
+        //     packageArtifact()
+        // } else if(env.JOB_NAME.contains("test")) {
+        //     buildAndTest()
+        // }
     }
 }
 
