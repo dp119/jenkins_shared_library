@@ -3,6 +3,9 @@ def call(){
         stage('Checkout') {
             checkout scm
         }
+        stage('Build') {
+            packageArtifact()
+        }
 
         // Execute different stages depending on the job
         // if(env.JOB_NAME.contains("deploy")){
