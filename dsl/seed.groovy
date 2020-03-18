@@ -19,19 +19,20 @@ def createDeploymentJob(jobName, repoUrl) {
     }
 }
 
-// def createTestJob(jobName, repoUrl) {
-//     multibranchPipelineJob(jobName) {
-//         branchSources {
-//             git {
-//                 remote(repoUrl)
-//                 includes('*')
-//             }
-//         }
-//         triggers {
-//             cron("H/5 * * * *")
-//         }
-//     }
-// }
+def createTestJob(jobName, repoUrl) {
+    multibranchPipelineJob(jobName) {
+        branchSources {
+            git {
+                id('123456789')
+                remote(repoUrl)
+                includes('*')
+            }
+        }
+        triggers {
+            cron("H/5 * * * *")
+        }
+    }
+}
 
 def buildPipelineJobs() {
     def repo = "https://github.com/dp119/"
@@ -40,7 +41,7 @@ def buildPipelineJobs() {
     def testName = jobName + "_test"
 
     createDeploymentJob(deployName, repoUrl)
-//    createTestJob(testName, repoUrl)
+    createTestJob(testName, repoUrl)
 }
 
 buildPipelineJobs()
