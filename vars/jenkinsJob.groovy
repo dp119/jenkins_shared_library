@@ -7,9 +7,7 @@ def call(){
         // Execute different stages depending on the job
 		
 		packageArtifact()
-        
 		test()
-        
 		sonarScan()
     }
 }
@@ -25,10 +23,10 @@ def Test(){
     stage("Backend tests"){
         bat "mvn test"
     }
+}
 	
 def sonarScan(){
     stage("Sonar scan"){
         bat "mvn sonar:sonar"
     }
-	
 }
