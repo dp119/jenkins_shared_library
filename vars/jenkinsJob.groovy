@@ -19,7 +19,7 @@ def packageArtifact(){
     }
 }
 
-def Test(){
+def test(){
     stage("Backend tests"){
         bat "mvn test"
     }
