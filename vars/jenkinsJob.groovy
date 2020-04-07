@@ -15,12 +15,13 @@ def call(){
 
 def packageArtifact(){
     stage("Package artifact") {
-        sh "mvn package"
+        bat "mvn compile"
+        bat "mvn package"
     }
 }
 
 def buildAndTest(){
     stage("Backend tests"){
-        sh "mvn test"
+        bat "mvn test"
     }
 }
