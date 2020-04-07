@@ -5,11 +5,12 @@ def call(){
         }
 
         // Execute different stages depending on the job
-        if(env.JOB_NAME.contains("deploy")){
-            packageArtifact()
-        } else if(env.JOB_NAME.contains("test")) {
-            buildAndTest()
-        }
+		
+		packageArtifact()
+        
+		test()
+        
+		sonarScan()
     }
 }
 
@@ -20,8 +21,14 @@ def packageArtifact(){
     }
 }
 
-def buildAndTest(){
+def Test(){
     stage("Backend tests"){
         bat "mvn test"
     }
+	
+def sonarScan(){
+    stage("Sonar scan"){
+        bat "mvn sonar:sonar"
+    }
+	
 }
