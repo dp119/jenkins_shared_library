@@ -6,9 +6,19 @@ def call(){
 
         // Execute different stages depending on the job
 		
-		packageArtifact()
 		test()
+		
+		packageArtifact()
+
 		sonarScan()
+		
+		dbScriptDeploy()
+    }
+}
+
+def test(){
+    stage("Backend tests"){
+        bat "mvn test"
     }
 }
 
@@ -19,11 +29,7 @@ def packageArtifact(){
     }
 }
 
-def Test(){
-    stage("Backend tests"){
-        bat "mvn test"
-    }
-}
+
 	
 def sonarScan(){
     stage("Sonar scan"){
@@ -32,9 +38,9 @@ def sonarScan(){
 }
 	
 def dbScriptDeploy(){
-    stage('dbScriptDeploy') {
-	// One or more steps need to be included within the steps block.
-	flywayrunner commandLineArgs: '', credentialsId: 'mysql', flywayCommand: 'info', installationName: 'Flyway', locations: 'src\\main\\resources\\db\\migration', url: 'jdbc:mysql://127.0.0.1:3306/'
+	stage('dbScriptDeploy') {
+			// One or more steps need to be included within the steps block.
+			flywayrunner commandLineArgs: '', credentialsId: 'mysql', flywayCommand: 'info', installationName: 'Flyway', locations: 'src\\main\\resources\\db\\migration', url: 'jdbc:mysql://127.0.0.1:3306/'
     }
 }
 
