@@ -8,10 +8,12 @@ def call(){
 		
 		test()
 		
-		packageArtifact()
-
+		compile()
+		
 		sonarScan()
 		
+		packageArtifact()
+
 		dbScriptDeploy()
     }
 }
@@ -22,18 +24,22 @@ def test(){
     }
 }
 
-def packageArtifact(){
+def compile(){
     stage("Package artifact") {
         bat "mvn compile"
-        bat "mvn package"
     }
 }
-
 
 	
 def sonarScan(){
     stage("Sonar scan"){
         bat "mvn sonar:sonar"
+    }
+}
+
+def packageArtifact(){
+    stage("Package artifact") {
+        bat "mvn package"
     }
 }
 	
@@ -43,4 +49,3 @@ def dbScriptDeploy(){
 	flywayrunner commandLineArgs: '', credentialsId: 'mysql', flywayCommand: 'info', installationName: 'Flyway', locations: 'src\\main\\resources\\db\\migration', url: 'jdbc:mysql://127.0.0.1:3306/database1'
     }
 }
-
