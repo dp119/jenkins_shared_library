@@ -46,6 +46,6 @@ def packageArtifact(){
 def dbScriptDeploy(){
     stage('dbScriptDeploy') {
 	// One or more steps need to be included within the steps block.
-	flywayrunner commandLineArgs: '', credentialsId: 'mysql', flywayCommand: 'migrate', installationName: 'Flyway', locations: 'filesystem:D:\\Softwares\\flyway-commandline-6.3.2-windows-x64\\flyway-6.3.2\\sql', url: 'jdbc:mysql://127.0.0.1:3306/database1'
+	flywayrunner commandLineArgs: '', credentialsId: 'mysql', flywayCommand: 'info', installationName: 'Flyway', locations: 'filesystem:D:\\Softwares\\flyway-commandline-6.3.2-windows-x64\\flyway-6.3.2\\sql', url: 'jdbc:mysql://127.0.0.1:3306/database1'
     }
 }
