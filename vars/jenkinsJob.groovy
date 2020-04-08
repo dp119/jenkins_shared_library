@@ -25,7 +25,7 @@ def test(){
 }
 
 def compile(){
-    stage("Package artifact") {
+    stage("Compile") {
         bat "mvn compile"
     }
 }
@@ -46,6 +46,6 @@ def packageArtifact(){
 def dbScriptDeploy(){
     stage('dbScriptDeploy') {
 	// One or more steps need to be included within the steps block.
-	flywayrunner commandLineArgs: '', credentialsId: 'mysql', flywayCommand: 'info', installationName: 'Flyway', locations: 'src\\main\\resources\\db\\migration', url: 'jdbc:mysql://127.0.0.1:3306/database1'
+	flywayrunner commandLineArgs: '', credentialsId: 'mysql', flywayCommand: 'clean', installationName: 'Flyway', locations: 'src\\main\\resources\\db\\migration', url: 'jdbc:mysql://127.0.0.1:3306/database1'
     }
 }
