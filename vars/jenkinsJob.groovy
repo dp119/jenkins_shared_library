@@ -46,6 +46,6 @@ def packageArtifact(){
 def dbScriptDeploy(){
     stage('dbScriptDeploy') {
 	// One or more steps need to be included within the steps block.
-	flywayrunner commandLineArgs: '', credentialsId: 'mysql', flywayCommand: 'migrate', installationName: 'Flyway', locations: 'filesystem:src\\main\\resources\\db\\migration', url: 'jdbc:mysql://127.0.0.1:3306/database1'
+	flywayrunner commandLineArgs: '', credentialsId: 'mysql', flywayCommand: 'migrate', installationName: 'Flyway', locations: 'filesystem:$WORKSPACE\\$JENKINS_JOB\\src\\main\\resources\\db\\migration', url: 'jdbc:mysql://127.0.0.1:3306/database1'
     }
 }
